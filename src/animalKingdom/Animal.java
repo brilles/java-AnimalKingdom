@@ -15,6 +15,16 @@ public abstract class Animal
 		this.year = year;
 	}
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getYear()
+    {
+        return year;
+    }
+
 	public String move()
 	{
 		return "move";

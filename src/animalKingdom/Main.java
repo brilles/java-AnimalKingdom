@@ -3,6 +3,18 @@ package animalKingdom;
 import java.util.*;
 public class Main 
 {
+	public static void printAnimals(ArrayList<Animal> animals, CheckAnimal tester)
+	{
+		for (Animal a : animals)
+		{
+			if (tester.test(a))
+			{
+				System.out.println(a.getName() + " " + a.getYear());
+
+			}
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		//Mammals	
@@ -48,16 +60,37 @@ public class Main
 		animalList.add(catfish);
 		animalList.add(perch);
 
-		System.out.println(animalList);
+		System.out.println();
+		System.out.println("List all the animals in descending order by year named");
+		animalList.sort((a1, a2) -> a2.getYear() - a1.getYear());
+		animalList.forEach((a) -> System.out.println(a.getName() + " " + a.getYear()));
 
-		// List all the animals in desc order by year named
-		// list all animals alphabetically
-		// list all the animals order by how they mve
-		// list only those animals that breath with lungs
-		// list only thos animals that breath with lungs and were named on 1758
-		// list only those animals that lay eggs and breath with lungs
-		// list alphabetically only those animals that were named in 1758
+		System.out.println();
+		System.out.println("List all the animals alphabetically");
+		animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		animalList.forEach((a) -> System.out.println(a.getName() + " " + a.getYear()));
 
-		// Stretch: list alphabetically those animals that are mammals
+		System.out.println();
+		System.out.println("List all the animals order by how they move");
+		animalList.sort((a1, a2) -> a1.move().compareToIgnoreCase(a2.move()));
+		animalList.forEach((a) -> System.out.println(a.getName() + " " + a.getYear() + " " + a.move()));
+
+		System.out.println();
+		System.out.println("List only those animals the breath with lungs");
+		printAnimals(animalList, a -> a.breath() == "lungs");
+
+		System.out.println();
+		System.out.println("List only those animals that breath with lungs and were named in 1758");
+		printAnimals(animalList, a -> (a.breath() == "lungs") && (a.getYear() == 1758));
+
+		System.out.println();
+		System.out.println("List only those animals that lay eggs and breath with lungs");
+		printAnimals(animalList, a -> (a.breath() == "lungs") && (a.reproduce() == "eggs"));
+
+		System.out.println();
+		System.out.println("List alphabetically only those animals that were named in 1758");
+		animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		printAnimals(animalList, a -> a.getYear() == 1758);
+		
 	}
 }
