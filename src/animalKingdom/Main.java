@@ -14,7 +14,7 @@ public class Main
 			}
 		}
 	}
-	
+
 	public static void main(String[] args)
 	{
 		//Mammals	
@@ -92,5 +92,9 @@ public class Main
 		animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
 		printAnimals(animalList, a -> a.getYear() == 1758);
 		
+		System.out.println();
+		System.out.println("For the list of animals, list alphabetically those animals that are mammals.");
+		animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		printAnimals(animalList, a -> a instanceof Mammal);
 	}
 }
